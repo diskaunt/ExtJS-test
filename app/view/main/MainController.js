@@ -67,8 +67,10 @@ Ext.define('MyApp.view.main.MainController', {
     }
   },
 
-  onProductSelected: function (grid, td, index, record) {
-    if (!record) return;
+  onProductSelected: function (view, cell, index, record) {
+		vm = this.getViewModel();
+
+    if (!record || index !== 1 || vm.get('windowOpen')) return;
 
     var productCard = Ext.create({
       xtype: 'window',
@@ -78,6 +80,12 @@ Ext.define('MyApp.view.main.MainController', {
       items: {
         xtype: 'productcard',
       },
+			modal: true,
+			// listeners: {
+      //       close: function() {
+      //           vm.set('windowOpen', false);
+      //       }
+      //   }
     });
 
     var productForm = productCard.down('productcard');
@@ -85,6 +93,7 @@ Ext.define('MyApp.view.main.MainController', {
     Boolean(productForm) && productForm.loadRecord(record);
 
     productCard.show();
+		// vm.set('windowOpen', true);
   },
 
   onSaveProduct: function (button) {

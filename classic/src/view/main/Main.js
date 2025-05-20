@@ -6,6 +6,9 @@ Ext.define('MyApp.view.main.Main', {
   plugins: 'viewport',
   viewModel: {
     type: 'main',
+		data: {
+			windowOpen: false,
+		},
   },
   layout: {
     type: 'border',
@@ -13,11 +16,11 @@ Ext.define('MyApp.view.main.Main', {
 
   items: [
     {
-      xtype: 'panel', // Панель для заголовка
+      xtype: 'panel',
       region: 'north',
-      height: 80, // Высота заголовка
+      height: 80,
       bodyStyle:
-        'background-color: #35A0DE; display: flex; align-content: center; color: white; padding: 10px 50px;', // Примерный стиль синего заголовка
+        'background-color: #35A0DE; display: flex; align-content: center; color: white; padding: 10px 50px;',
       layout: {
         type: 'hbox',
         align: 'middle',
